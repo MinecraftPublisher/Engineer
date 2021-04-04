@@ -1,0 +1,9 @@
+Engineer v0.1
+Release notes:
+  - Added a compile engine
+  - Added an error log
+  - Patched the parser
+  - Upgraded the lexer
+  - Made this news log
+  That's it :3
+  Enjoy!
