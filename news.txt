@@ -1,3 +1,10 @@
+Engineer v0.2
+Release notes:
+  - The debugger is functional
+  - Parser and lexer are now working
+  - Planning to online-mode the functions
+  - Do you like it?
+
 Engineer v0.1
 Release notes:
   - Added a compile engine
