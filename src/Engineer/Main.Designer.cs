@@ -42,6 +42,8 @@ namespace Engineer
             this.documentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iDEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stepByStepTutorialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.theWholeDocumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@ namespace Engineer
             this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.Location = new System.Drawing.Point(772, 396);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(179, 44);
+            this.btnGenerate.Size = new System.Drawing.Size(168, 44);
             this.btnGenerate.TabIndex = 5;
             this.btnGenerate.Text = "Compile";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -61,7 +63,7 @@ namespace Engineer
             this.richTextBox1.Location = new System.Drawing.Point(12, 446);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(939, 99);
+            this.richTextBox1.Size = new System.Drawing.Size(928, 87);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "LogBox - Logs will appear here.";
             // 
@@ -70,7 +72,7 @@ namespace Engineer
             this.lblNews.Location = new System.Drawing.Point(772, 27);
             this.lblNews.Name = "lblNews";
             this.lblNews.ReadOnly = true;
-            this.lblNews.Size = new System.Drawing.Size(179, 363);
+            this.lblNews.Size = new System.Drawing.Size(168, 363);
             this.lblNews.TabIndex = 4;
             this.lblNews.Text = "Retrieving updates...";
             // 
@@ -92,7 +94,7 @@ namespace Engineer
             this.documentationToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(956, 24);
+            this.menu.Size = new System.Drawing.Size(952, 24);
             this.menu.TabIndex = 6;
             this.menu.Text = "menuStrip1";
             // 
@@ -135,7 +137,9 @@ namespace Engineer
             // 
             this.documentationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allToolStripMenuItem,
-            this.iDEToolStripMenuItem});
+            this.iDEToolStripMenuItem,
+            this.stepByStepTutorialToolStripMenuItem,
+            this.theWholeDocumentationToolStripMenuItem});
             this.documentationToolStripMenuItem.Name = "documentationToolStripMenuItem";
             this.documentationToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
             this.documentationToolStripMenuItem.Text = "Documentation";
@@ -145,7 +149,7 @@ namespace Engineer
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
             this.allToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.D)));
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.allToolStripMenuItem.Text = "Coding";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
@@ -154,14 +158,32 @@ namespace Engineer
             this.iDEToolStripMenuItem.Name = "iDEToolStripMenuItem";
             this.iDEToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.C)));
-            this.iDEToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.iDEToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.iDEToolStripMenuItem.Text = "IDE";
+            this.iDEToolStripMenuItem.Click += new System.EventHandler(this.iDEToolStripMenuItem_Click);
+            // 
+            // stepByStepTutorialToolStripMenuItem
+            // 
+            this.stepByStepTutorialToolStripMenuItem.Name = "stepByStepTutorialToolStripMenuItem";
+            this.stepByStepTutorialToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.S)));
+            this.stepByStepTutorialToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.stepByStepTutorialToolStripMenuItem.Text = "Step by step tutorial";
+            this.stepByStepTutorialToolStripMenuItem.Click += new System.EventHandler(this.stepByStepTutorialToolStripMenuItem_Click);
+            // 
+            // theWholeDocumentationToolStripMenuItem
+            // 
+            this.theWholeDocumentationToolStripMenuItem.Name = "theWholeDocumentationToolStripMenuItem";
+            this.theWholeDocumentationToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.theWholeDocumentationToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.theWholeDocumentationToolStripMenuItem.Text = "The whole documentation";
+            this.theWholeDocumentationToolStripMenuItem.Click += new System.EventHandler(this.theWholeDocumentationToolStripMenuItem_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(956, 557);
+            this.ClientSize = new System.Drawing.Size(952, 545);
             this.Controls.Add(this.rtbInput);
             this.Controls.Add(this.lblNews);
             this.Controls.Add(this.richTextBox1);
@@ -170,8 +192,8 @@ namespace Engineer
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(972, 596);
-            this.MinimumSize = new System.Drawing.Size(972, 596);
+            this.MaximumSize = new System.Drawing.Size(968, 584);
+            this.MinimumSize = new System.Drawing.Size(904, 553);
             this.Name = "Main";
             this.Text = "Engineer - Untitled.eng";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
@@ -196,6 +218,8 @@ namespace Engineer
         private System.Windows.Forms.ToolStripMenuItem documentationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iDEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stepByStepTutorialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem theWholeDocumentationToolStripMenuItem;
     }
 }
 

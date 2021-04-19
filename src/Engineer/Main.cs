@@ -185,7 +185,22 @@ namespace Engineer
 
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Process.Start("https://minecraftpublisher.github.io/Engineer/#/?id=the-engineer-programming-language");
+        }
 
+        private void stepByStepTutorialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://minecraftpublisher.github.io/Engineer/#/?id=tutorial");
+        }
+
+        private void iDEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://minecraftpublisher.github.io/Engineer/#/?id=the-program");
+        }
+
+        private void theWholeDocumentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://minecraftpublisher.github.io/Engineer/");
         }
     }
     public class FileAssociation
