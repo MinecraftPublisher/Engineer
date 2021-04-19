@@ -59,13 +59,13 @@ Attributes define what each Entity does. Attributes are also very to define and 
 The data formats are also unique for each attribute, so they are at the end of the documentation.<br>
 <br>
 
-# The engineer language specifications
+## The engineer language specifications
 
 There are 3 current entity types:
 
 `section`, `dialog` and `choice`.<br>
 
-## Tutorial
+# Tutorial
 
 Sections are the main parts, they order and execute entities. The usable attribute in a section is `ref`. It's used like this:
 
