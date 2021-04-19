@@ -1,3 +1,13 @@
+Engineer v0.4
+Release notes:
+  - The whole thing is done
+  - Added the installer project
+  - No online-mode yet...
+  - File associasions for ".eng"
+  - Finished the compiler
+  - Section, Dialog and Choice are fully working
+  - Added debug mode to the compile menu
+
 Engineer v0.3
 Release notes:
   - Completed the compiler
