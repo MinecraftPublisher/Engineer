@@ -167,6 +167,92 @@ Now you should pay attention to NOT put any spaces between the attributes in the
 **INCORRECT CODE**: `<option>:['Yes', 2]`
 **CORRECT CODE**:   `<option>:['Yes',2]`
 
+I've decided that i need the player's name and talk to them to make them feel the game a bit more.
+What do i do?
+Correct!
+Use responsives!
+Responsives are included in the v0.5 update, and they accept `text` and `name` only once.
+So i could update my code like this, first i'm going to add the dialoges for the responsives:
+
+```
+(section)[1]:
+   <ref>:[2]
+   <ref>:[6]
+   <ref>:[7]
+END [2]
+
+(dialog)[2]:
+   <text>:'Hello world!'
+   <text>:'Hello again world!'
+END [2]
+
+(dialog)[3]:
+   <text>:'You chose yes!'
+END [3]
+
+(dialog)[4]:
+   <text>:'You chose no!'
+END [2]
+
+(choice)[5]:
+   <text>:'Yes or no?'
+   <option>:['Yes :)',3]
+   <option>:['No... :(',4]
+END [5]
+
+(responsive)[6]:
+   
+END [6]
+
+(dialog)[7]:
+   <text>:'Nice to meet you, {name}!'
+END [7]
+
+```
+
+Now i can include the responsive:
+
+```
+(section)[1]:
+   <ref>:[2]
+   <ref>:[6]
+   <ref>:[7]
+END [2]
+
+(dialog)[2]:
+   <text>:'Hello world!'
+   <text>:'Hello again world!'
+END [2]
+
+(dialog)[3]:
+   <text>:'You chose yes!'
+END [3]
+
+(dialog)[4]:
+   <text>:'You chose no!'
+END [2]
+
+(choice)[5]:
+   <text>:'Yes or no?'
+   <option>:['Yes :)',3]
+   <option>:['No... :(',4]
+END [5]
+
+(responsive)[6]:
+   <text>:'What is your name?'
+   <name>:'name'
+END [6]
+
+(dialog)[7]:
+   <text>:'Nice to meet you, {name}!'
+END [7]
+
+```
+
+Enjoy!
+I would update this tutorial when there is a major change.
+Cya!
+
 # The finish line
 
 We are done!<br>
