@@ -146,7 +146,7 @@ namespace Engineer
             this.pictureBox1.Location = new System.Drawing.Point(99, 130);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(39, 39);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
@@ -171,6 +171,7 @@ namespace Engineer
             this.MinimumSize = new System.Drawing.Size(311, 314);
             this.Name = "CompileForm";
             this.Text = "Compile your game";
+            this.Load += new System.EventHandler(this.CompileForm_Load);
             this.ssStatus.ResumeLayout(false);
             this.ssStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

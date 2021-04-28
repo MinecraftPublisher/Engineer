@@ -33,74 +33,82 @@ namespace Engineer
             string owner = txtOwner.Text;
             bool isDebugMode = checkBox1.Checked;
 
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Choose a folder to save your game";
-            fbd.ShowNewFolderButton = true;
-            
-            if(fbd.ShowDialog() == DialogResult.OK)
+            if(name == "" || version == "" || owner == "")
             {
-                txtStatus.Text = "Preparing files...";
-                string selectedPath = fbd.SelectedPath;
-                string folderPath = Path.Combine(selectedPath, name);
-                txtStatus.Text = "Writing DLLs...";
-                Directory.CreateDirectory(folderPath);
-                File.WriteAllBytes(Path.Combine(folderPath, "Newtonsoft.Json.dll"), Properties.Resources.Newtonsoft_Json);
-                txtStatus.Text = "Compiling game...";
-                string code = replace(Properties.Resources.code, "DATA_GAME_JSON", givenCode);
-                code = replace(code, "DATA_GAME_NAME", name);
-                code = replace(code, "DATA_GAME_VERSION", version);
-                code = replace(code, "DATA_GAME_OWNER", owner);
-                code = replace(code, "DATA_GAME_DEBUG", isDebugMode.ToString().ToLower());
+                MessageBox.Show("You left one of the text boxes blank... Why tho?");
+                txtStatus.Text = "Compilation failed due to dumb";
+            }
+            else
+            {
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                fbd.Description = "Choose a folder to save your game";
+                fbd.ShowNewFolderButton = true;
 
-                CSharpCodeProvider codeProvider = new CSharpCodeProvider();
-                ICodeCompiler icc = codeProvider.CreateCompiler();
-                string Output = Path.Combine(folderPath, name + ".exe");
-
-                CompilerParameters options = new CompilerParameters();
-                options.GenerateExecutable = true;
-                options.OutputAssembly = Output;
-                if(iconPath != null)
+                if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    options.CompilerOptions = @"/win32icon:" + iconPath;
-                }
-                options.ReferencedAssemblies.Add("System.Data.dll");
-                options.ReferencedAssemblies.Add("System.dll");
-                options.ReferencedAssemblies.Add("System.Xml.dll");
-                options.ReferencedAssemblies.Add("System.Linq.dll");
-                options.ReferencedAssemblies.Add("System.Xml.Linq.dll");
-                options.ReferencedAssemblies.Add("System.Core.dll");
-                options.ReferencedAssemblies.Add("Newtonsoft.Json.dll");
-                options.ReferencedAssemblies.Add("System.Threading.dll");
-                options.ReferencedAssemblies.Add("System.Threading.Tasks.dll");
-                options.ReferencedAssemblies.Add("System.IO.dll");
-                options.ReferencedAssemblies.Add("System.Text.RegularExpressions.dll");
-                CompilerResults results = icc.CompileAssemblyFromSource(options, code);
+                    txtStatus.Text = "Preparing files...";
+                    string selectedPath = fbd.SelectedPath;
+                    string folderPath = Path.Combine(selectedPath, name);
+                    txtStatus.Text = "Writing DLLs...";
+                    Directory.CreateDirectory(folderPath);
+                    File.WriteAllBytes(Path.Combine(folderPath, "Newtonsoft.Json.dll"), Properties.Resources.Newtonsoft_Json);
+                    txtStatus.Text = "Compiling game...";
+                    string code = replace(Properties.Resources.code, "DATA_GAME_JSON", givenCode);
+                    code = replace(code, "DATA_GAME_NAME", name);
+                    code = replace(code, "DATA_GAME_VERSION", version);
+                    code = replace(code, "DATA_GAME_OWNER", owner);
+                    code = replace(code, "DATA_GAME_DEBUG", isDebugMode.ToString().ToLower());
 
-                if (results.Errors.Count > 0)
-                {
-                    foreach (CompilerError CompErr in results.Errors)
+                    CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+                    ICodeCompiler icc = codeProvider.CreateCompiler();
+                    string Output = Path.Combine(folderPath, name + ".exe");
+
+                    CompilerParameters options = new CompilerParameters();
+                    options.GenerateExecutable = true;
+                    options.OutputAssembly = Output;
+                    if (iconPath != "NULL")
                     {
-                        txtStatus.Text = "Compilation failure :(";
-                        MessageBox.Show("Line number " + CompErr.Line + ", Error Number: " + CompErr.ErrorNumber + ", '" + CompErr.ErrorText + ";" + Environment.NewLine + Environment.NewLine);
+                        options.CompilerOptions = @"/win32icon:" + iconPath;
+                    }
+                    options.ReferencedAssemblies.Add("System.Data.dll");
+                    options.ReferencedAssemblies.Add("System.dll");
+                    options.ReferencedAssemblies.Add("System.Xml.dll");
+                    options.ReferencedAssemblies.Add("System.Linq.dll");
+                    options.ReferencedAssemblies.Add("System.Xml.Linq.dll");
+                    options.ReferencedAssemblies.Add("System.Core.dll");
+                    options.ReferencedAssemblies.Add("Newtonsoft.Json.dll");
+                    options.ReferencedAssemblies.Add("System.Threading.dll");
+                    options.ReferencedAssemblies.Add("System.Threading.Tasks.dll");
+                    options.ReferencedAssemblies.Add("System.IO.dll");
+                    options.ReferencedAssemblies.Add("System.Text.RegularExpressions.dll");
+                    CompilerResults results = icc.CompileAssemblyFromSource(options, code);
+
+                    if (results.Errors.Count > 0)
+                    {
+                        foreach (CompilerError CompErr in results.Errors)
+                        {
+                            txtStatus.Text = "Compilation failure :(";
+                            MessageBox.Show("Line number " + CompErr.Line + ", Error Number: " + CompErr.ErrorNumber + ", '" + CompErr.ErrorText + ";" + Environment.NewLine + Environment.NewLine);
+                        }
+                    }
+                    else
+                    {
+                        txtStatus.Text = "Success!";
+                        DialogResult result = MessageBox.Show("Do you want to run your game?", "Success!", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            Process.Start(Path.Combine(folderPath, name + ".exe"));
+                        }
+                        else
+                        {
+                            txtStatus.Text = "Game compiled to " + Path.Combine(folderPath, name + ".exe");
+                        }
                     }
                 }
                 else
                 {
-                    txtStatus.Text = "Success!";
-                    DialogResult result = MessageBox.Show("Do you want to run your game?","Success!", MessageBoxButtons.YesNo);
-                    if(result == DialogResult.Yes)
-                    {
-
-                    }
-                    else
-                    {
-                        txtStatus.Text = "Game compiled to " + Path.Combine(folderPath, name + ".exe");
-                    }
+                    txtStatus.Text = "Compilation aborted";
                 }
-            }
-            else
-            {
-                txtStatus.Text = "Compilation aborted";
             }
         }
 
@@ -117,9 +125,7 @@ namespace Engineer
 
             if(ofd.ShowDialog() == DialogResult.OK)
             {
-                Stream image = Stream.Null;
-                Image.FromFile(ofd.FileName).Save(image, System.Drawing.Imaging.ImageFormat.Png);
-                pictureBox1.Image = Image.FromStream(image);
+                pictureBox1.Image = Image.FromFile(ofd.FileName);
                 iconPath = ofd.FileName;
                 txtStatus.Text = "Icon applied!";
             }
@@ -127,6 +133,11 @@ namespace Engineer
             {
                 txtStatus.Text = "Icon selection aborted";
             }
+        }
+
+        private void CompileForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -178,7 +178,7 @@ namespace Engineer
             {
                 if(MessageBox.Show("You haven't saved your file, do you want to save it now?", "Unsaved project", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    saveToolStripMenuItem_Click(sender, e);
+                    saveAsToolStripMenuItem_Click(sender, e);
                 }
             }
         }
