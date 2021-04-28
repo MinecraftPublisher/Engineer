@@ -1,3 +1,13 @@
+Engineer v0.5
+Release notes:
+  - Added a responsive entity, which lets you take user input.
+  - You can use {variable name} for using variables
+  - Only use variables when they are defined...
+  - This release contains 1,137 lines of code!
+
+For more information, check the documentation
+
+
 Engineer v0.4.1
 Release notes:
   - Added the run game code
