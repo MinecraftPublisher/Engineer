@@ -15,32 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_168A7562D3990FF10365881C32B55BF8"
-        "OwnerKey" = "8:_E5AC552CA2BA46609EA96854A0359336"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_BB443A3813C54139A6241E6FEB3383D3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E5AC552CA2BA46609EA96854A0359336"
+        "MsmKey" = "8:_F3A9E54599CB456F8A55BEC52FDB38E0"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_168A7562D3990FF10365881C32B55BF8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E5AC552CA2BA46609EA96854A0359336"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -138,37 +120,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_168A7562D3990FF10365881C32B55BF8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_168A7562D3990FF10365881C32B55BF8"
-                    {
-                    "Name" = "8:Newtonsoft.Json.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Newtonsoft.Json.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9003A1EBD2B646D1BE7B61E78B131082"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB443A3813C54139A6241E6FEB3383D3"
             {
             "SourcePath" = "8:..\\..\\Engineer\\558969-icons_20-512-removebg-preview (1).ico"
@@ -189,18 +140,13 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E5AC552CA2BA46609EA96854A0359336"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F3A9E54599CB456F8A55BEC52FDB38E0"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Engineer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3879129ab3a4467b, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Engineer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E5AC552CA2BA46609EA96854A0359336"
-                    {
-                    "Name" = "8:Engineer.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:..\\..\\Engineer\\bin\\Release\\Engineer.exe"
             "TargetName" = "8:"
@@ -260,6 +206,17 @@
                 {
                 }
             }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_EE0FD93593754700AF2A94E33B7D6D9A"
+            {
+            "Name" = "8:#1920"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:SendToFolder"
+                "Folders"
+                {
+                }
+            }
         }
         "LaunchCondition"
         {
@@ -276,15 +233,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Engineer Installer"
-        "ProductCode" = "8:{3795A120-7870-4902-B8BD-620B6CF894AA}"
-        "PackageCode" = "8:{C100C3C0-63C3-4BC4-9101-C27E3C7FCC1A}"
+        "ProductCode" = "8:{A0D1B640-BAF9-4AE3-ACBF-05289B7289EF}"
+        "PackageCode" = "8:{CDE2FBD0-2816-4D93-BB59-E89C735E0E3E}"
         "UpgradeCode" = "8:{218BEA52-D2AA-4EAD-8321-AA5CD0B9396F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:0.4.1"
+        "ProductVersion" = "8:1.0.5"
         "Manufacturer" = "8:Mforoud86"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -397,6 +354,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_05BEC0C63AFD48AE8DA0A79E5094015E"
+            {
+            "Name" = "8:Engineer"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_F3A9E54599CB456F8A55BEC52FDB38E0"
+            "Folder" = "8:_EE0FD93593754700AF2A94E33B7D6D9A"
+            "WorkingFolder" = "8:_9003A1EBD2B646D1BE7B61E78B131082"
+            "Icon" = "8:_BB443A3813C54139A6241E6FEB3383D3"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_137467E120944FD289C991FA171CA337"
             {
             "Name" = "8:Engineer"
@@ -405,10 +376,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_E5AC552CA2BA46609EA96854A0359336"
+            "Target" = "8:_F3A9E54599CB456F8A55BEC52FDB38E0"
             "Folder" = "8:_62DD2E18CBD746E496D66EAA56669B20"
             "WorkingFolder" = "8:_9003A1EBD2B646D1BE7B61E78B131082"
-            "Icon" = "8:"
+            "Icon" = "8:_BB443A3813C54139A6241E6FEB3383D3"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C139180AAD8D46C180A171B67FBEDDA2"
@@ -419,7 +390,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_E5AC552CA2BA46609EA96854A0359336"
+            "Target" = "8:_F3A9E54599CB456F8A55BEC52FDB38E0"
             "Folder" = "8:_4559281F5A594DD48AB5BC6B145B3E01"
             "WorkingFolder" = "8:_9003A1EBD2B646D1BE7B61E78B131082"
             "Icon" = "8:_BB443A3813C54139A6241E6FEB3383D3"

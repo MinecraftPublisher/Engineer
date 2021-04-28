@@ -103,13 +103,60 @@ namespace Engineer_Game
                     }
                 }
             }
+            else if(Entitytype == "responsive")
+            {
+                string text = "";
+                string variableName = "";
+                for (int i = 0; i < attributes.Length; i++)
+                {
+                    if (attributes[i].type == "text" && Regex.IsMatch(attributes[i].value, "\'.+\'") && text == "")
+                    {
+                        try
+                        {
+                            text = attributes[i].value.Substring(1, attributes[i].value.Length - 2);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Error: failed to read TEXT ( Close after 5 seconds )");
+                            Thread.Sleep(5000);
+                            Environment.Exit(0);
+                        }
+                    }
+                    else if(attributes[i].type == "text" && Regex.IsMatch(attributes[i].value, "\'.+\'") && text != "")
+                    {
+                        Console.WriteLine("Attribute TEXT already defined ( Close after 5 seconds )");
+                        Thread.Sleep(5000);
+                        Environment.Exit(0);
+                    }
+                    else if(attributes[i].type == "name" && Regex.IsMatch(attributes[i].value, "\'.+\'") && variableName == "")
+                    {
+                        variableName = attributes[i].value.Substring(1, attributes[i].value.Length - 2);
+                    }
+                    else if (attributes[i].type == "name" && Regex.IsMatch(attributes[i].value, "\'.+\'") && variableName != "")
+                    {
+                        Console.WriteLine("Attribute NAME already defined ( Close after 5 seconds )");
+                        Thread.Sleep(5000);
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: invalid attribute type given in a RESPONSIVE ( Close after 5 seconds )\nATTRIBUTE TYPE: \"" + attributes[i].type + "\"\nATTRIBUTE VALUE: \"" + attributes[i].value + "\"");
+                        Thread.Sleep(5000);
+                        Environment.Exit(0);
+                    }
+
+                    Console.Write(text);
+                    File.WriteAllText(EngineerSystem.makeSavePath("variables", variableName), Console.ReadLine());
+                }
+            }
             else if (Entitytype == "dialog")
             {
                 for (int i = 0; i < attributes.Length; i++)
                 {
                     if (attributes[i].type == "text" && Regex.IsMatch(attributes[i].value, "\'.+\'"))
                     {
-                        EngineerSystem.Type(attributes[i].value.Substring(1, attributes[i].value.Length - 2), isDebug);
+                        string data = attributes[i].value.Substring(1, attributes[i].value.Length - 2);
+                        EngineerSystem.Type(EngineerSystem.includeVariables(data), isDebug);
                     }
                     else
                     {
@@ -123,7 +170,8 @@ namespace Engineer_Game
             {
                 if (attributes[0].type == "text" && Regex.IsMatch(attributes[0].value, "\'.+\'"))
                 {
-                    EngineerSystem.Type(attributes[0].value.Substring(1, attributes[0].value.Length - 2), isDebug);
+                    string data = attributes[0].value.Substring(1, attributes[0].value.Length - 2);
+                    EngineerSystem.Type(EngineerSystem.includeVariables(data), isDebug);
                     List<EngineerChoiceOption> options = new List<EngineerChoiceOption>();
 
                     for (int i = 1; i < attributes.Length; i++)
@@ -137,7 +185,7 @@ namespace Engineer_Game
                                 string cuttedText = uncuttedText.Substring(1, uncuttedText.Length - 2);
                                 string reference = cuttedValue.Split(',')[1];
 
-                                options.Add(new EngineerChoiceOption(cuttedText, reference));
+                                options.Add(new EngineerChoiceOption(EngineerSystem.includeVariables(cuttedText), reference));
                             }
                             catch (Exception ex)
                             {
@@ -158,12 +206,12 @@ namespace Engineer_Game
                 }
                 else
                 {
-                    Console.WriteLine("Error: TEXT attribute not found at the start of a CHOICE. ( Close after 5 seconds )\nATTRIBUTE TYPE: \"" + attributes[0].type + "\"\nATTRIBUTE VALUE: \"" + attributes[0].value);
+                    Console.WriteLine("Error: TEXT attribute not found at the start of a CHOICE. ( Close after 5 seconds )\nATTRIBUTE TYPE: \"" + attributes[0].type + "\"\nATTRIBUTE VALUE: \"" + attributes[0].value + "\"");
                 }
             }
             else
             {
-                Console.WriteLine("Error: invalid entity data type, is the data curropted? ( Close after 5 seconds )");
+                Console.WriteLine("Error: invalid entity data type, is the data curropted? ( Close after 5 seconds )\nENTITY TYPE: \"" + attributes[0].type + "\"\nENTITY VALUE: \"" + attributes[0].value + "\"");
                 Thread.Sleep(5000);
                 Environment.Exit(0);
             }
@@ -261,6 +309,47 @@ namespace EngineerLib
                 Console.WriteLine();
                 Thread.Sleep(durations[2]);
             }
+        }
+
+        /// <summary>
+        /// Adds the variables to a text :3
+        /// </summary>
+        /// <param name="text">The input text UwU</param>
+        /// <returns></returns>
+        public static string includeVariables(string text)
+        {
+            string result = text;
+            MatchCollection matches = Regex.Matches(text, @"\{\w+\}");
+
+            foreach (Match matchRegex in matches)
+            {
+                string variable = matchRegex.Value.Substring(1, matchRegex.Value.Length - 2);
+                if(File.Exists(makeSavePath("variables", variable + ".var")))
+                {
+                    string varData = File.ReadAllText(makeSavePath("variables", variable + ".var"));
+                    result.Replace(matchRegex.Value, varData);
+                }
+                else
+                {
+                    result.Replace(matchRegex.Value, "{Variable not found}");
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Makes a path for saving the files in the game data folder
+        /// </summary>
+        /// <param name="directory">The directory sub-folder's name</param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public static string makeSavePath(string directory, string filename)
+        {
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), EngineerGameData.creator));
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), EngineerGameData.creator, EngineerGameData.name));
+            Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), EngineerGameData.creator, EngineerGameData.name, directory));
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), EngineerGameData.creator, EngineerGameData.name, directory, filename);
         }
 
         /// <summary>
