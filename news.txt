@@ -1,3 +1,11 @@
+Engineer v0.4.1
+Release notes:
+  - Added the run game code
+  - Fixed the save problem when closing the program
+Patches:
+  - Patched an error where you didn't get your icon in the icon box
+  - Patched the null error where you tried to make a game without an icon
+
 Engineer v0.4
 Release notes:
   - The whole thing is done
